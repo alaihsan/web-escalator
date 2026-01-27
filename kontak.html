@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami - CV. TEKNIK MANDIRI SEJAHTERA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Navbar Desktop -->
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">TM</div>
+            <div class="logo-text">
+                <h1>TEKNIK MANDIRI SEJAHTERA</h1>
+                <span data-translate="tagline">ELEVATOR & ESCALATOR EXPERTS</span>
+            </div>
+        </div>
+        <div class="nav-menu">
+            <a class="nav-link" href="index.html" data-translate="menu.home">Beranda</a>
+            <a class="nav-link" href="tentangkami.html" data-translate="menu.about">Tentang Kami</a>
+            <a class="nav-link" href="jasa-layanan.html" data-translate="menu.services">Jasa & Layanan</a>
+            <a class="nav-link active" href="kontak.html" data-translate="menu.contact">Kontak Kami</a>
+            <button class="lang-switcher" onclick="toggleLanguage()">
+                <span id="lang-text">EN</span> 🌐
+            </button>
+        </div>
+    </nav>
+
+    <!-- Bottom Navigation Mobile -->
+    <div class="bottom-nav">
+        <div class="bottom-nav-container">
+            <div class="bottom-nav-item" onclick="window.location.href='index.html'">
+                <div class="bottom-nav-icon">🏠</div>
+                <div class="bottom-nav-label" data-translate="menu.home">Beranda</div>
+            </div>
+            <div class="bottom-nav-item" onclick="window.location.href='tentangkami.html'">
+                <div class="bottom-nav-icon">ℹ️</div>
+                <div class="bottom-nav-label" data-translate="menu.about">Tentang</div>
+            </div>
+            <div class="bottom-nav-item" onclick="window.location.href='jasa-layanan.html'">
+                <div class="bottom-nav-icon">⚙️</div>
+                <div class="bottom-nav-label" data-translate="menu.services">Layanan</div>
+            </div>
+            <div class="bottom-nav-item active" onclick="window.location.href='kontak.html'">
+                <div class="bottom-nav-icon">📞</div>
+                <div class="bottom-nav-label" data-translate="menu.contact">Kontak</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Contact Page -->
+        <section class="hero" style="background-image: url('assets/img/028.jpg');">
+            <div class="hero-overlay"></div>
+            <div class="hero-wrapper">
+                <div class="hero-content">
+                    <h2 data-translate="contact.hero.title">Hubungi <span class="accent-text">Kami</span></h2>
+                    <p data-translate="contact.hero.subtitle">
+                        Kami siap membantu Anda dengan respons cepat dan profesional
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="contact-wrapper">
+                <!-- Contact Info Grid -->
+                <div class="contact-info-grid">
+                    <!-- Phone -->
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <h3>Telepon</h3>
+                        <p>Hubungi kami melalui nomor telepon resmi kami untuk penawaran dan konsultasi.</p>
+                        <div class="contact-detail">
+                            <a href="tel:+6281318833002">+62 (813) 1883-3002</a>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp -->
+                    <div class="contact-card">
+                        <div class="contact-icon">💬</div>
+                        <h3>WhatsApp</h3>
+                        <p>Hubungi kami via WhatsApp untuk respon yang lebih cepat dan mudah.</p>
+                        <div class="contact-detail">
+                            <a href="https://wa.me/6281318833002" target="_blank">+62 (813) 1883-3002</a>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <h3>Email</h3>
+                        <p>Kirim pertanyaan atau proposal melalui email resmi kami.</p>
+                        <div class="contact-detail">
+                            <a href="mailto:info@teknikmandirisejahtera.com">info@teknikmandirisejahtera.com</a>
+                        </div>
+                    </div>
+
+                    <!-- Lokasi -->
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <h3>Lokasi</h3>
+                        <p>Kunjungi kantor kami untuk diskusi lebih mendalam tentang kebutuhan Anda.</p>
+                        <div class="contact-detail">
+                            <p>Jakarta, Indonesia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2 data-translate="contact.form.title">Kirim Pesan Kami</h2>
+                    <p data-translate="contact.form.subtitle">Isi form di bawah dan kami akan segera meresponse Anda</p>
+                    
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Nama Lengkap" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Nomor Telepon" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subjek">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Pesan Anda..." rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Hours Section -->
+        <section class="features" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
+            <div class="contact-wrapper">
+                <div class="section-header">
+                    <h3 data-translate="contact.hours.title">Jam Operasional</h3>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="hours-grid">
+                    <div class="hours-card">
+                        <h4>Senin - Jumat</h4>
+                        <p>08:00 - 17:00 WIB</p>
+                        <span class="status open">Buka</span>
+                    </div>
+                    <div class="hours-card">
+                        <h4>Sabtu</h4>
+                        <p>09:00 - 14:00 WIB</p>
+                        <span class="status open">Buka</span>
+                    </div>
+                    <div class="hours-card">
+                        <h4>Minggu & Libur</h4>
+                        <p>By Appointment</p>
+                        <span class="status closed">Tutup</span>
+                    </div>
+                    <div class="hours-card">
+                        <h4>Layanan Darurat</h4>
+                        <p>24/7 Available</p>
+                        <span class="status open">Buka</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/6281318833002" class="whatsapp-fab" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CV. TEKNIK MANDIRI SEJAHTERA</h3>
+                <p data-translate="footer.desc">
+                    Partner terpercaya untuk solusi pengadaan spare part, perbaikan, dan perawatan elevator & escalator berkualitas tinggi.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3 data-translate="footer.services.title">Layanan</h3>
+                <ul>
+                    <li data-translate="footer.services.item1">Pengadaan Spare Part</li>
+                    <li data-translate="footer.services.item2">Perbaikan & Repair</li>
+                    <li data-translate="footer.services.item3">Maintenance Berkala</li>
+                    <li data-translate="footer.services.item4">Modernisasi Sistem</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 data-translate="footer.contact.title">Hubungi Kami</h3>
+                <ul>
+                    <li>📧 Email: info@teknikmandirisejahtera.com</li>
+                    <li>📞 Phone: +6281318833002</li>
+                    <li>🏢 Jakarta, Indonesia</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CV. TEKNIK MANDIRI SEJAHTERA. <span data-translate="footer.rights">All Rights Reserved</span>.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/js.js"></script>
+</body>
+</html>
