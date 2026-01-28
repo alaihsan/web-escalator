@@ -2,11 +2,12 @@
 const translations = {
     id: {
         tagline: "ELEVATOR & ESCALATOR EXPERTS",
+        "hero.accent": "Elevator & Escalator",
         "menu.home": "Beranda",
         "menu.about": "Tentang Kami",
         "menu.services": "Jasa & Layanan",
         "menu.contact": "Kontak Kami",
-        "hero.title": "Solusi Profesional untuk Elevator & Escalator Anda",
+        "hero.title": "Solusi Profesional untuk",
         "hero.subtitle": "Layanan pengadaan spare part, perbaikan, dan perawatan terpercaya dengan harga terjangkau dan garansi berkualitas",
         "hero.cta1": "Lihat Layanan Kami",
         "hero.cta2": "Tentang Kami",
@@ -23,6 +24,7 @@ const translations = {
         "features.feature5.desc": "Didukung oleh tim teknisi bersertifikat dengan pengalaman puluhan tahun di industri",
         "features.feature6.title": "Layanan 24/7",
         "features.feature6.desc": "Siap melayani kebutuhan darurat Anda kapan saja untuk memastikan operasional tetap berjalan",
+        "gallery.title": "Galeri Proyek Kami",
         "about.hero.title": "Tentang CV. TEKNIK MANDIRI SEJAHTERA",
         "about.hero.subtitle": "Partner terpercaya Anda untuk solusi elevator dan escalator berkualitas",
         "about.content.title": "Siapa Kami",
@@ -85,6 +87,10 @@ const translations = {
         "services.tag.repair": "Perbaikan",
         "services.tag.maintenance": "Maintenance",
         "services.tag.modernization": "Modernisasi",
+        "footer.company": "Perusahaan",
+        "footer.services": "Layanan",
+        "footer.contact": "Kontak",
+        "footer.quick": "Link Cepat",
         "footer.desc": "Partner terpercaya untuk solusi pengadaan spare part, perbaikan, dan perawatan elevator & escalator berkualitas tinggi.",
         "footer.services.title": "Layanan",
         "footer.services.item1": "Pengadaan Spare Part",
@@ -92,15 +98,17 @@ const translations = {
         "footer.services.item3": "Maintenance Berkala",
         "footer.services.item4": "Modernisasi Sistem",
         "footer.contact.title": "Hubungi Kami",
-        "footer.rights": "All Rights Reserved"
+        "footer.rights": "All Rights Reserved",
+        "services.section.title": "Layanan Kami"
     },
     en: {
         tagline: "ELEVATOR & ESCALATOR EXPERTS",
+        "hero.accent": "Elevator & Escalator",
         "menu.home": "Home",
         "menu.about": "About Us",
         "menu.services": "Services",
         "menu.contact": "Contact Us",
-        "hero.title": "Professional Solutions for Your Elevator & Escalator",
+        "hero.title": "Professional Solutions for",
         "hero.subtitle": "Trusted spare parts procurement, repair, and maintenance services with affordable prices and quality guarantees",
         "hero.cta1": "View Our Services",
         "hero.cta2": "About Us",
@@ -117,6 +125,7 @@ const translations = {
         "features.feature5.desc": "Supported by certified technician team with decades of industry experience",
         "features.feature6.title": "24/7 Service",
         "features.feature6.desc": "Ready to serve your emergency needs anytime to ensure operations keep running",
+        "gallery.title": "Our Project Gallery",
         "about.hero.title": "About CV. TEKNIK MANDIRI SEJAHTERA",
         "about.hero.subtitle": "Your trusted partner for quality elevator and escalator solutions",
         "about.content.title": "Who We Are",
@@ -179,6 +188,10 @@ const translations = {
         "services.tag.repair": "Repair",
         "services.tag.maintenance": "Maintenance",
         "services.tag.modernization": "Modernization",
+        "footer.company": "Company",
+        "footer.services": "Services",
+        "footer.contact": "Contact",
+        "footer.quick": "Quick Links",
         "footer.desc": "Trusted partner for high-quality elevator & escalator spare parts procurement, repair, and maintenance solutions.",
         "footer.services.title": "Services",
         "footer.services.item1": "Spare Parts Procurement",
@@ -186,7 +199,8 @@ const translations = {
         "footer.services.item3": "Regular Maintenance",
         "footer.services.item4": "System Modernization",
         "footer.contact.title": "Contact Us",
-        "footer.rights": "All Rights Reserved"
+        "footer.rights": "All Rights Reserved",
+        "services.section.title": "Our Services"
     }
 };
 
@@ -207,76 +221,130 @@ function toggleLanguage() {
     currentLang = currentLang === 'id' ? 'en' : 'id';
     localStorage.setItem('language', currentLang);
     document.getElementById('lang-text').textContent = currentLang === 'id' ? 'EN' : 'ID';
-    document.getElementById('lang-text-mobile').textContent = currentLang === 'id' ? 'EN' : 'ID';
-    applyTranslations();
-}
-
-// Scroll to top button
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-    // Remove loader
-    setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-    }, 800);
-
-    // Apply saved language
-    if (document.getElementById('lang-text')) {
-        document.getElementById('lang-text').textContent = currentLang === 'id' ? 'EN' : 'ID';
-    }
     if (document.getElementById('lang-text-mobile')) {
         document.getElementById('lang-text-mobile').textContent = currentLang === 'id' ? 'EN' : 'ID';
     }
     applyTranslations();
+}
 
-    // Scroll to top button visibility
-    window.addEventListener('scroll', function() {
-        const scrollTop = document.getElementById('scrollTop');
-        const whatsappFab = document.querySelector('.whatsapp-fab');
-        if (window.pageYOffset > 300) {
-            scrollTop.classList.add('visible');
-            whatsappFab.classList.add('visible');
+// Dark Mode Toggle
+function toggleDarkMode() {
+    const html = document.documentElement;
+    const isDark = html.classList.toggle('dark');
+    localStorage.setItem('darkMode', isDark.toString());
+    
+    // Update moon/sun icons
+    const moonIcon = document.querySelector('.fa-moon');
+    const sunIcon = document.querySelector('.fa-sun');
+    if (moonIcon) {
+        if (isDark) {
+            moonIcon.classList.add('dark:hidden');
+            moonIcon.classList.remove('dark:inline');
         } else {
-            scrollTop.classList.remove('visible');
-            whatsappFab.classList.remove('visible');
+            moonIcon.classList.remove('dark:hidden');
+            moonIcon.classList.add('dark:inline');
         }
+    }
+    if (sunIcon) {
+        if (isDark) {
+            sunIcon.classList.add('hidden');
+            sunIcon.classList.remove('dark:inline');
+        } else {
+            sunIcon.classList.remove('hidden');
+            sunIcon.classList.add('dark:inline');
+        }
+    }
+}
 
-        // Navbar scroll effect
-        const navbar = document.querySelector('.navbar');
-        if (window.pageYOffset > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+// Initialize theme
+function initializeTheme() {
+    const darkMode = localStorage.getItem('darkMode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (darkMode === 'true' || (darkMode === null && prefersDark)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+}
+
+// Initialize GSAP animations
+function initializeGSAP() {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Animate all cards on scroll
+    gsap.utils.toArray('.card-hover').forEach((card, index) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.6,
+            delay: index * 0.1
+        });
     });
 
-    // Cache images to localStorage (simplified version)
-    const images = document.querySelectorAll('.service-image');
-    images.forEach((img, index) => {
-        const cacheKey = `img-cache-${index}`;
-        const cachedData = localStorage.getItem(cacheKey);
-        
-        if (cachedData) {
-            img.src = cachedData;
-        } else {
-            img.addEventListener('load', function() {
-                try {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.naturalWidth;
-                    canvas.height = img.naturalHeight;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    const dataURL = canvas.toDataURL('image/jpeg', 0.8);
-                    localStorage.setItem(cacheKey, dataURL);
-                } catch (e) {
-                    console.log('Cannot cache image:', e);
+    // Scroll-to-top button visibility
+    const scrollTop = document.getElementById('scrollTop');
+    if (scrollTop) {
+        ScrollTrigger.create({
+            onUpdate: (self) => {
+                if (self.getVelocity() > 0 || window.pageYOffset > 300) {
+                    scrollTop.classList.add('opacity-100', 'pointer-events-auto');
+                } else {
+                    scrollTop.classList.remove('opacity-100', 'pointer-events-auto');
                 }
-            });
+            }
+        });
+    }
+}
+
+// Service Modal Management
+function openServiceModal(id, title, desc) {
+    const modal = document.getElementById('serviceModal');
+    const titleEl = document.getElementById('modalServiceTitle');
+    const descEl = document.getElementById('modalServiceDesc');
+    const imgEl = document.getElementById('modalMainImage');
+    
+    if (modal && titleEl && descEl && imgEl) {
+        titleEl.textContent = title;
+        descEl.textContent = desc;
+        imgEl.src = 'assets/img/' + String(id).padStart(3, '0') + '.jpeg';
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+    }
+}
+
+function closeServiceModal() {
+    const modal = document.getElementById('serviceModal');
+    if (modal) {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Check dark mode preference
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.documentElement.classList.add('dark');
+    }
+
+    // Apply language
+    if (document.getElementById('lang-text')) {
+        document.getElementById('lang-text').textContent = currentLang === 'id' ? 'EN' : 'ID';
+    }
+    applyTranslations();
+
+    // Remove loader
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.style.opacity = '0';
+            loader.style.pointerEvents = 'none';
         }
-    });
+    }, 800);
 });
 
 // Smooth scroll for anchor links
@@ -285,7 +353,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            gsap.to(window, {
+                scrollTo: target,
+                duration: 1
+            });
         }
     });
 });
@@ -345,7 +416,6 @@ class ServiceModal {
             prevBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Previous clicked');
                 this.previousImage();
             });
         }
@@ -354,7 +424,6 @@ class ServiceModal {
             nextBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Next clicked');
                 this.nextImage();
             });
         }
@@ -393,8 +462,10 @@ class ServiceModal {
         const desc = translations[currentLang][descKey] || descKey;
 
         // Update modal content
-        document.getElementById('modalServiceTitle').textContent = title;
-        document.getElementById('modalServiceDesc').textContent = desc;
+        const titleEl = document.getElementById('modalServiceTitle');
+        const descEl = document.getElementById('modalServiceDesc');
+        if (titleEl) titleEl.textContent = title;
+        if (descEl) descEl.textContent = desc;
 
         // Update image
         this.updateImage();
@@ -448,6 +519,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Only initialize modal on services page
     if (document.getElementById('serviceModal')) {
         const modal = new ServiceModal();
-        console.log('ServiceModal initialized');
     }
 });

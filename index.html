@@ -6,210 +6,367 @@
     <title>CV. TEKNIK MANDIRI SEJAHTERA - Elevator & Escalator Service</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .gradient-accent {
+            background: linear-gradient(to right, #fbbf24, #f59e0b, #ea580c);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-0.75rem);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .glow-box {
+            position: relative;
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.2);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-white text-slate-900 transition-colors duration-300">
     <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="loader-spinner"></div>
+    <div class="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 to-blue-900 z-50 loader" id="loader">
+        <div class="relative">
+            <div class="w-20 h-20 border-4 border-amber-400/30 border-t-amber-400 rounded-full animate-spin"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full animate-pulse"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Navbar Desktop -->
-    <nav class="navbar">
-        <div class="logo">
-            <div class="logo-icon">TM</div>
-            <div class="logo-text">
-                <h1>TEKNIK MANDIRI SEJAHTERA</h1>
-                <span data-translate="tagline">ELEVATOR & ESCALATOR EXPERTS</span>
+    <nav class="fixed top-0 left-0 right-0 z-40 navbar-desktop">
+        <div class="backdrop-blur-md bg-gradient-to-r from-slate-900/95 via-blue-900/95 to-slate-900/95 border-b border-amber-400/20 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="w-14 h-14 bg-gradient-accent rounded-2xl flex items-center justify-center font-bold text-white text-lg shadow-lg hover:shadow-xl transition-all hover:scale-110 hover:rotate-3">TM</div>
+                    <div class="hidden sm:flex flex-col">
+                        <h1 class="text-xl font-bold text-white leading-tight">TEKNIK MANDIRI</h1>
+                        <span class="text-xs font-semibold text-amber-400 tracking-wider" data-translate="tagline">ELEVATOR & ESCALATOR EXPERTS</span>
+                    </div>
+                </div>
+
+                <!-- Nav Menu -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="nav-link relative text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.home">Beranda</a>
+                    <a href="tentangkami.html" class="nav-link relative text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.about">Tentang Kami</a>
+                    <a href="jasa-layanan.html" class="nav-link relative text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.services">Jasa & Layanan</a>
+                    <a href="kontak.html" class="nav-link relative text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.contact">Kontak Kami</a>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleLanguage()" class="px-4 py-2 bg-amber-400/20 hover:bg-amber-400/30 border border-amber-400 text-amber-400 rounded-full font-semibold text-sm transition-all duration-300 flex items-center gap-1" title="Ganti Bahasa">
+                        <span id="lang-text" class="font-bold">EN</span> 🌐
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="nav-menu">
-            <a class="nav-link active" href="index.html" data-translate="menu.home">Beranda</a>
-            <a class="nav-link" href="tentangkami.html" data-translate="menu.about">Tentang Kami</a>
-            <a class="nav-link" href="jasa-layanan.html" data-translate="menu.services">Jasa & Layanan</a>
-            <a class="nav-link" href="kontak.html" data-translate="menu.contact">Kontak Kami</a>
-            <button class="lang-switcher" onclick="toggleLanguage()">
-                <span id="lang-text">EN</span> 🌐
-            </button>
         </div>
     </nav>
 
-    <!-- Bottom Navigation Mobile -->
-    <div class="bottom-nav">
-        <div class="bottom-nav-container">
-            <div class="bottom-nav-item active" onclick="window.location.href='index.html'">
-                <div class="bottom-nav-icon">🏠</div>
-                <div class="bottom-nav-label" data-translate="menu.home">Beranda</div>
-            </div>
-            <div class="bottom-nav-item" onclick="window.location.href='tentangkami.html'">
-                <div class="bottom-nav-icon">ℹ️</div>
-                <div class="bottom-nav-label" data-translate="menu.about">Tentang</div>
-            </div>
-            <div class="bottom-nav-item" onclick="window.location.href='jasa-layanan.html'">
-                <div class="bottom-nav-icon">⚙️</div>
-                <div class="bottom-nav-label" data-translate="menu.services">Layanan</div>
-            </div>
-            <div class="bottom-nav-item" onclick="toggleLanguage()">
-                <div class="bottom-nav-icon">🌐</div>
-                <div class="bottom-nav-label" id="lang-text-mobile">EN</div>
-            </div>
+    <!-- Mobile Bottom Navigation -->
+    <div class="fixed bottom-0 left-0 right-0 lg:hidden z-40 bg-gradient-to-t from-slate-900/98 to-slate-900/90 border-t border-amber-400/20 backdrop-blur-md">
+        <div class="flex justify-around items-center py-2">
+            <a href="index.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs font-medium" data-translate="menu.home">Beranda</span>
+            </a>
+            <a href="tentangkami.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+                <i class="fas fa-info-circle text-xl"></i>
+                <span class="text-xs font-medium" data-translate="menu.about">Tentang</span>
+            </a>
+            <a href="jasa-layanan.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+                <i class="fas fa-cog text-xl"></i>
+                <span class="text-xs font-medium" data-translate="menu.services">Layanan</span>
+            </a>
+            <a href="kontak.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+                <i class="fas fa-phone text-xl"></i>
+                <span class="text-xs font-medium" data-translate="menu.contact">Kontak</span>
+            </a>
         </div>
     </div>
 
-    <!-- Scroll to Top -->
-    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Home Page -->
-        <div id="home" class="page active">
-            <section class="hero" style="background-image: url('assets/img/024.jpg');">
-                <div class="hero-overlay"></div>
-                <div class="hero-wrapper">
-                    <div class="hero-content">
-                        <h2 data-translate="hero.title">
-                            Solusi Profesional untuk <span class="accent-text">Elevator & Escalator</span> Anda
-                        </h2>
-                        <p data-translate="hero.subtitle">
-                            Layanan pengadaan spare part, perbaikan, dan perawatan terpercaya dengan harga terjangkau dan garansi berkualitas
-                        </p>
-                        <div class="cta-buttons">
-                            <a href="jasa-layanan.html" class="btn btn-primary" data-translate="hero.cta1">
-                                Lihat Layanan Kami
-                            </a>
-                            <a href="tentangkami.html" class="btn btn-secondary" data-translate="hero.cta2">
-                                Tentang Kami
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="features">
-                <div class="section-title">
-                    <h2 data-translate="features.title">Mengapa Memilih Kami?</h2>
-                    <div class="underline"></div>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
-                        <h3 data-translate="features.feature1.title">Terpercaya & Bergaransi</h3>
-                        <p data-translate="features.feature1.desc">
-                            Setiap pekerjaan dilengkapi dengan garansi resmi untuk memastikan kepuasan dan ketenangan Anda
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💰</div>
-                        <h3 data-translate="features.feature2.title">Harga Terjangkau</h3>
-                        <p data-translate="features.feature2.desc">
-                            Kami menawarkan solusi dengan biaya kompetitif tanpa mengorbankan kualitas layanan
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3 data-translate="features.feature3.title">Respon Cepat</h3>
-                        <p data-translate="features.feature3.desc">
-                            Tim teknisi profesional kami siap memberikan layanan cepat untuk setiap kebutuhan Anda
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔧</div>
-                        <h3 data-translate="features.feature4.title">Spare Part Lengkap</h3>
-                        <p data-translate="features.feature4.desc">
-                            Menyediakan suku cadang original dan kompatibel untuk berbagai merek elevator dan escalator
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">👨‍🔧</div>
-                        <h3 data-translate="features.feature5.title">Teknisi Berpengalaman</h3>
-                        <p data-translate="features.feature5.desc">
-                            Didukung oleh tim teknisi bersertifikat dengan pengalaman puluhan tahun di industri
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📞</div>
-                        <h3 data-translate="features.feature6.title">Layanan 24/7</h3>
-                        <p data-translate="features.feature6.desc">
-                            Siap melayani kebutuhan darurat Anda kapan saja untuk memastikan operasional tetap berjalan
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Gallery Section -->
-            <section class="gallery">
-                <div class="section-title">
-                    <h2 data-translate="gallery.title">Galeri Proyek Kami</h2>
-                    <div class="underline"></div>
-                </div>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="assets/img/021.jpg" alt="Proyek 021" loading="lazy">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/img/022.jpg" alt="Proyek 022" loading="lazy">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/img/023.jpg" alt="Proyek 023" loading="lazy">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/img/024.jpg" alt="Proyek 024" loading="lazy">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/img/025.jpg" alt="Proyek 025" loading="lazy">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/img/026.jpg" alt="Proyek 026" loading="lazy">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/img/027.jpg" alt="Proyek 027" loading="lazy">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/img/028.jpg" alt="Proyek 028" loading="lazy">
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" onclick="scrollToTop()" class="fixed bottom-32 lg:bottom-12 right-6 w-14 h-14 rounded-full bg-gradient-accent shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 pointer-events-none hover:scale-110 flex items-center justify-center text-white font-bold text-xl" title="Kembali ke Atas">
+        ↑
+    </button>
 
     <!-- WhatsApp FAB -->
-    <a href="https://wa.me/6281318833002" class="whatsapp-fab" target="_blank">
+    <a href="https://wa.me/6281318833002" target="_blank" class="fixed bottom-12 lg:bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center text-white text-3xl opacity-0 pointer-events-none" id="whatsappFab" title="Chat WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Main Content -->
+    <main class="pt-20 pb-20 lg:pb-8">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 pt-8">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 opacity-30" style="background-image: url('assets/img/024.jpg'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+            
+            <!-- Animated Background Elements -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute -top-1/2 -right-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse"></div>
+                <div class="absolute -bottom-1/2 -left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="hero-content space-y-6">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+                        <span data-translate="hero.title">Solusi Profesional untuk</span>
+                        <span class="block mt-2 bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 bg-clip-text text-transparent animate-pulse"><span data-translate="hero.accent">Elevator & Escalator</span> Anda</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed" data-translate="hero.subtitle">
+                        Layanan pengadaan spare part, perbaikan, dan perawatan terpercaya dengan harga terjangkau dan garansi berkualitas
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                        <a href="jasa-layanan.html" class="inline-block px-8 py-4 bg-gradient-accent text-white font-bold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95">
+                            <i class="fas fa-arrow-right mr-2"></i><span data-translate="hero.cta1">Lihat Layanan Kami</span>
+                        </a>
+                        <a href="tentangkami.html" class="inline-block px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-all duration-300">
+                            <i class="fas fa-info-circle mr-2"></i><span data-translate="hero.cta2">Tentang Kami</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+                <i class="fas fa-chevron-down text-amber-400 text-2xl"></i>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white transition-colors duration-300">
+            <div class="max-w-6xl mx-auto">
+                <!-- Section Title -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-black text-slate-900 mb-4" data-translate="features.title">
+                        Mengapa Memilih Kami?
+                    </h2>
+                    <div class="h-1 w-24 bg-gradient-accent rounded-full mx-auto shadow-lg"></div>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="card-hover p-8 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">🛡️</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3" data-translate="features.feature1.title">Terpercaya & Bergaransi</h3>
+                        <p class="text-slate-600 leading-relaxed" data-translate="features.feature1.desc">Setiap pekerjaan dilengkapi dengan garansi resmi untuk memastikan kepuasan dan ketenangan Anda</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="card-hover p-8 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">💰</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3" data-translate="features.feature2.title">Harga Terjangkau</h3>
+                        <p class="text-slate-600 leading-relaxed" data-translate="features.feature2.desc">Kami menawarkan solusi dengan biaya kompetitif tanpa mengorbankan kualitas layanan</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="card-hover p-8 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">⚡</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3" data-translate="features.feature3.title">Respon Cepat</h3>
+                        <p class="text-slate-600 leading-relaxed" data-translate="features.feature3.desc">Tim teknisi profesional kami siap memberikan layanan cepat untuk setiap kebutuhan Anda</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="card-hover p-8 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">🔧</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3" data-translate="features.feature4.title">Spare Part Lengkap</h3>
+                        <p class="text-slate-600 leading-relaxed" data-translate="features.feature4.desc">Menyediakan suku cadang original dan kompatibel untuk berbagai merek elevator dan escalator</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="card-hover p-8 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">👨‍🔧</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3" data-translate="features.feature5.title">Teknisi Berpengalaman</h3>
+                        <p class="text-slate-600 leading-relaxed" data-translate="features.feature5.desc">Didukung oleh tim teknisi bersertifikat dengan pengalaman puluhan tahun di industri</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="card-hover p-8 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">📞</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3" data-translate="features.feature6.title">Layanan 24/7</h3>
+                        <p class="text-slate-600 leading-relaxed" data-translate="features.feature6.desc">Siap melayani kebutuhan darurat Anda kapan saja untuk memastikan operasional tetap berjalan</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class=\"py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white transition-colors duration-300\">
+            <div class=\"max-w-6xl mx-auto\">
+                <!-- Section Title -->
+                <div class=\"text-center mb-16\">
+                    <h2 class=\"text-4xl lg:text-5xl font-black text-slate-900 mb-4\">Galeri Proyek Kami</h2>
+                    <div class="h-1 w-24 bg-gradient-accent rounded-full mx-auto shadow-lg"></div>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
+                        <img src="assets/img/021.jpg" alt="Proyek 021" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Proyek 021</p>
+                        </div>
+                    </div>
+                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
+                        <img src="assets/img/022.jpg" alt="Proyek 022" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Proyek 022</p>
+                        </div>
+                    </div>
+                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
+                        <img src="assets/img/023.jpg" alt="Proyek 023" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Proyek 023</p>
+                        </div>
+                    </div>
+                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
+                        <img src="assets/img/024.jpg" alt="Proyek 024" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Proyek 024</p>
+                        </div>
+                    </div>
+                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 md:col-span-2 lg:col-span-2">
+                        <img src="assets/img/025.jpg" alt="Proyek 025" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Proyek 025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>CV. TEKNIK MANDIRI SEJAHTERA</h3>
-                <p data-translate="footer.desc">
-                    Partner terpercaya untuk solusi pengadaan spare part, perbaikan, dan perawatan elevator & escalator berkualitas tinggi.
-                </p>
+    <footer class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-slate-950 dark:via-blue-950 dark:to-slate-950 text-slate-100 border-t border-amber-400/20 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-amber-400 mb-4">CV. TEKNIK MANDIRI</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed" data-translate="footer.desc">Partner terpercaya untuk solusi pengadaan spare part, perbaikan, dan perawatan elevator & escalator berkualitas tinggi.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-amber-400 mb-4" data-translate="footer.services.title">Layanan</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors" data-translate="footer.services.item1">Pengadaan Spare Part</li>
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors" data-translate="footer.services.item2">Perbaikan & Repair</li>
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors" data-translate="footer.services.item3">Maintenance Berkala</li>
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors" data-translate="footer.services.item4">Modernisasi Sistem</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-amber-400 mb-4" data-translate="footer.contact.title">Hubungi Kami</h3>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><i class="fas fa-phone text-amber-400 mr-2"></i>0813-1883-3002</li>
+                        <li><i class="fas fa-envelope text-amber-400 mr-2"></i>info@teknikmandiri.id</li>
+                        <li><i class="fas fa-map-marker-alt text-amber-400 mr-2"></i>Jakarta, Indonesia</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-amber-400 mb-4">Follow Us</h3>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-amber-400/20 hover:bg-amber-400/40 flex items-center justify-center transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-amber-400/20 hover:bg-amber-400/40 flex items-center justify-center transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-amber-400/20 hover:bg-amber-400/40 flex items-center justify-center transition-all"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3 data-translate="footer.services.title">Layanan</h3>
-                <ul>
-                    <li data-translate="footer.services.item1">Pengadaan Spare Part</li>
-                    <li data-translate="footer.services.item2">Perbaikan & Repair</li>
-                    <li data-translate="footer.services.item3">Maintenance Berkala</li>
-                    <li data-translate="footer.services.item4">Modernisasi Sistem</li>
-                </ul>
+            <div class="border-t border-slate-700 pt-8 text-center text-sm text-slate-400">
+                <p>© 2024 CV. TEKNIK MANDIRI SEJAHTERA - All Rights Reserved</p>
             </div>
-            <div class="footer-section">
-                <h3 data-translate="footer.contact.title">Hubungi Kami</h3>
-                <ul>
-                    <li>📧 Email: info@teknikmandirisejahtera.com</li>
-                    <li>📞 Phone: +6281318833002</li>
-                    <li>🏢 Jakarta, Indonesia</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 CV. TEKNIK MANDIRI SEJAHTERA. <span data-translate="footer.rights">All Rights Reserved</span>.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="assets/js/js.js"></script>
+    <script>
+        // Scroll animations with GSAP
+        function initScrollAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animate feature cards on scroll
+            gsap.utils.toArray('.card-hover').forEach(card => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.8,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+
+            // Animate gallery items
+            gsap.utils.toArray('.group').forEach((item, index) => {
+                gsap.from(item, {
+                    opacity: 0,
+                    scale: 0.9,
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+
+            // Scroll to top button visibility
+            ScrollTrigger.create({
+                onUpdate: (self) => {
+                    const scrollTop = document.getElementById('scrollTop');
+                    const whatsappFab = document.getElementById('whatsappFab');
+                    if (self.getVelocity() > 0 || window.pageYOffset > 300) {
+                        scrollTop.classList.add('opacity-100', 'pointer-events-auto');
+                        scrollTop.classList.remove('opacity-0', 'pointer-events-none');
+                        whatsappFab.classList.add('opacity-100', 'pointer-events-auto');
+                        whatsappFab.classList.remove('opacity-0', 'pointer-events-none');
+                    } else {
+                        scrollTop.classList.add('opacity-0', 'pointer-events-none');
+                        scrollTop.classList.remove('opacity-100', 'pointer-events-auto');
+                        whatsappFab.classList.add('opacity-0', 'pointer-events-none');
+                        whatsappFab.classList.remove('opacity-100', 'pointer-events-auto');
+                    }
+                }
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                document.getElementById('loader').style.pointerEvents = 'none';
+            }, 800);
+
+            initScrollAnimations();
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        scrollTo: target,
+                        duration: 1
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

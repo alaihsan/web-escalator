@@ -4,303 +4,496 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jasa & Layanan - CV. TEKNIK MANDIRI SEJAHTERA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://gsap.com/gsap.min.js"></script>
+    <script src="https://gsap.com/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="loader-spinner"></div>
-    </div>
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Roboto', sans-serif; font-weight: 900; letter-spacing: -0.5px; }
+        
+        html.dark { color-scheme: dark; }
+        html.dark body { background: linear-gradient(180deg, #020617 0%, #172554 50%, #020617 100%); }
+        
+        /* Enhanced card animations with sophisticated transitions */
+        .card-hover { 
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-1rem);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            filter: drop-shadow(0 25px 50px rgba(243, 156, 18, 0.15));
+        }
+        
+        .card-hover:hover::before {
+            opacity: 0.05;
+        }
+        
+        .glow-box { 
+            position: relative;
+            box-shadow: 0 0 40px rgba(243, 156, 18, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+            transition: box-shadow 0.5s ease;
+        }
+        
+        .card-hover:hover .glow-box {
+            box-shadow: 0 0 60px rgba(243, 156, 18, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-accent { background: linear-gradient(to right, #fbbf24, #f59e0b, #ea580c); }
+        .stat-counter { font-size: 2.25rem; font-weight: 900; color: #fbbf24; }
+        
+        /* Image hover effects */
+        .service-image {
+            transition: filter 0.6s cubic-bezier(0.23, 1, 0.320, 1), transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+        
+        .card-hover:hover .service-image {
+            filter: brightness(1.1) saturate(1.2);
+            transform: scale(1.05);
+        }
+        
+        html.dark .glow-box { 
+            box-shadow: 0 0 40px rgba(243, 156, 18, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+        }
+        
+        html.dark .card-hover:hover .glow-box {
+            box-shadow: 0 0 60px rgba(243, 156, 18, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+        }
 
-    <!-- Navbar Desktop -->
-    <nav class="navbar">
-        <div class="logo">
-            <div class="logo-icon">TM</div>
-            <div class="logo-text">
-                <h1>TEKNIK MANDIRI SEJAHTERA</h1>
-                <span data-translate="tagline">ELEVATOR & ESCALATOR EXPERTS</span>
+        /* Glowing Button Animations */
+        .glow-button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3), transparent 70%);
+            transform: translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 
+                            0 0 40px rgba(251, 191, 36, 0.3),
+                            0 0 60px rgba(251, 191, 36, 0.2);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(251, 191, 36, 0.8), 
+                            0 0 60px rgba(251, 191, 36, 0.6),
+                            0 0 90px rgba(251, 191, 36, 0.4);
+            }
+        }
+
+        @keyframes glow-outline {
+            0%, 100% { 
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                            inset 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            50% { 
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+                            inset 0 0 20px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        .animate-glow {
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .animate-glow-outline {
+            animation: glow-outline 3s ease-in-out infinite;
+        }
+
+        .glow-button:hover::before {
+            animation-duration: 1s;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900">
+    <!-- Loader -->
+    <div class="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 to-blue-900 z-50 loader" id="loader">
+        <div class="relative">
+            <div class="w-20 h-20 border-4 border-amber-400/30 border-t-amber-400 rounded-full animate-spin"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full animate-pulse"></div>
             </div>
         </div>
-        <div class="nav-menu">
-            <a class="nav-link" href="index.html" data-translate="menu.home">Beranda</a>
-            <a class="nav-link" href="tentangkami.html" data-translate="menu.about">Tentang Kami</a>
-            <a class="nav-link active" href="jasa-layanan.html" data-translate="menu.services">Jasa & Layanan</a>
-            <a class="nav-link" href="kontak.html" data-translate="menu.contact">Kontak Kami</a>
-            <button class="lang-switcher" onclick="toggleLanguage()">
-                <span id="lang-text">EN</span> 🌐
-            </button>
+    </div>
+
+    <!-- Fixed Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity" onclick="window.location.href='index.html'">
+                <div class="w-10 h-10 bg-gradient-accent rounded-lg flex items-center justify-center text-white font-bold">TM</div>
+                <div class="hidden sm:block">
+                    <h1 class="text-xs font-bold text-slate-900 leading-tight">TEKNIK MANDIRI</h1>
+                    <span class="text-xs text-amber-600 font-semibold">ELEVATOR & ESCALATOR</span>
+                </div>
+            </div>
+
+            <!-- Nav Links -->
+            <div class="hidden md:flex items-center gap-6">
+                <a href="index.html" class="text-slate-700 hover:text-amber-600 font-medium transition-colors">Beranda</a>
+                <a href="tentangkami.html" class="text-slate-700 hover:text-amber-600 font-medium transition-colors">Tentang Kami</a>
+                <a href="jasa-layanan.html" class="text-amber-600 font-bold border-b-2 border-amber-600 pb-1">Jasa & Layanan</a>
+                <a href="kontak.html" class="text-slate-700 hover:text-amber-600 font-medium transition-colors">Kontak</a>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleLanguage()" class="px-3 py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-sm font-semibold transition-colors">
+                    <span id="lang-text">EN</span> 🌐
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- Bottom Navigation Mobile -->
-    <div class="bottom-nav">
-        <div class="bottom-nav-container">
-            <div class="bottom-nav-item" onclick="window.location.href='index.html'">
-                <div class="bottom-nav-icon">🏠</div>
-                <div class="bottom-nav-label" data-translate="menu.home">Beranda</div>
-            </div>
-            <div class="bottom-nav-item" onclick="window.location.href='tentangkami.html'">
-                <div class="bottom-nav-icon">ℹ️</div>
-                <div class="bottom-nav-label" data-translate="menu.about">Tentang</div>
-            </div>
-            <div class="bottom-nav-item active">
-                <div class="bottom-nav-icon">⚙️</div>
-                <div class="bottom-nav-label" data-translate="menu.services">Layanan</div>
-            </div>
-            <div class="bottom-nav-item" onclick="toggleLanguage()">
-                <div class="bottom-nav-icon">🌐</div>
-                <div class="bottom-nav-label" id="lang-text-mobile">EN</div>
-            </div>
+    <!-- Mobile Bottom Navigation -->
+    <div class="fixed bottom-0 left-0 right-0 md:hidden z-30 bg-white border-t border-slate-200">
+        <div class="flex justify-around max-w-md mx-auto">
+            <button onclick="window.location.href='index.html'" class="flex-1 py-3 flex flex-col items-center gap-1 text-slate-700 hover:text-amber-600 transition-colors">
+                <i class="fas fa-home text-lg"></i>
+                <span class="text-xs">Beranda</span>
+            </button>
+            <button onclick="window.location.href='tentangkami.html'" class="flex-1 py-3 flex flex-col items-center gap-1 text-slate-700 hover:text-amber-600 transition-colors">
+                <i class="fas fa-info-circle text-lg"></i>
+                <span class="text-xs">Tentang</span>
+            </button>
+            <button onclick="window.location.href='jasa-layanan.html'" class="flex-1 py-3 flex flex-col items-center gap-1 text-amber-600 transition-colors border-t-2 border-amber-600">
+                <i class="fas fa-cogs text-lg"></i>
+                <span class="text-xs font-bold">Layanan</span>
+            </button>
+            <button onclick="window.location.href='kontak.html'" class="flex-1 py-3 flex flex-col items-center gap-1 text-slate-700 hover:text-amber-600 transition-colors">
+                <i class="fas fa-envelope text-lg"></i>
+                <span class="text-xs">Kontak</span>
+            </button>
         </div>
     </div>
+    <!-- Hero Section -->
+    <main class="pt-20 pb-20 lg:pb-8">
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 pt-8">
+            <!-- Animated Background Elements -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute -top-1/2 -right-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse"></div>
+                <div class="absolute -bottom-1/2 -left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+            </div>
 
-    <!-- Scroll to Top -->
-    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Services Page -->
-        <section class="hero" style="background-image: url('assets/img/026.jpg');">
-            <div class="hero-overlay"></div>
-            <div class="hero-wrapper">
-                <div class="hero-content">
-                    <h2 data-translate="services.hero.title">Jasa & <span class="accent-text">Layanan Kami</span></h2>
-                    <p data-translate="services.hero.subtitle">
-                        Solusi lengkap untuk semua kebutuhan elevator dan escalator Anda
-                    </p>
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+                <div class="mb-4 inline-block">
+                    <span class="px-4 py-2 bg-amber-500/20 border border-amber-500/50 rounded-full text-amber-300 text-sm font-semibold">
+                        <i class="fas fa-cog mr-2"></i>Jasa & Layanan Profesional
+                    </span>
                 </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+                    <span class="block">Solusi Lengkap untuk</span>
+                    <span class="block mt-2 bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 bg-clip-text text-transparent animate-pulse">Elevator & Escalator Anda</span>
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed">
+                    Pengadaan spare part, perbaikan, dan perawatan berkualitas tinggi dengan teknologi terkini dan tim profesional berpengalaman
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                    <a href="#services-grid" class="inline-block px-8 py-4 bg-gradient-accent text-white font-bold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 glow-button animate-glow">
+                        <i class="fas fa-arrow-down mr-2"></i>Lihat Semua Layanan
+                    </a>
+                    <a href="kontak.html" class="inline-block px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-all duration-300 hover:shadow-lg hover:shadow-white/50 glow-button-outline animate-glow-outline">
+                        <i class="fas fa-phone mr-2"></i>Hubungi Kami
+                    </a>
+                </div>
+            </div>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+                <i class="fas fa-chevron-down text-amber-400 text-2xl"></i>
             </div>
         </section>
 
-        <section class="features">
-            <div class="services-grid">
-                <!-- Traction Machine -->
-                <div class="service-item">
-                    <img src="assets/img/001.jpeg" alt="Traction Machine" class="service-image" data-service-id="1" data-title="services.item1.title" data-desc="services.item1.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item1.title">Mesin Traksi Elevator (Traction Machine)</h3>
-                        <p data-translate="services.item1.desc">
-                            Mesin penggerak utama elevator dengan sistem traksi yang efisien. Kami menyediakan spare part, perbaikan dan perawatan untuk semua jenis mesin traksi dari berbagai brand terkemuka dengan komponen berkualitas tinggi.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.sparepart">Spare Part</span>
-                    </div>
+        <!-- Services Grid Section -->
+        <section id="services-grid" class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white transition-colors duration-300">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center mb-20">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 mb-6">
+                        Jelajahi Semua Layanan Kami
+                    </h2>
+                    <div class="h-1 w-20 bg-gradient-accent rounded-full mx-auto"></div>
+                    <p class="text-slate-600 text-lg mt-6 max-w-2xl mx-auto">
+                        Dari spare part berkualitas hingga layanan maintenance komprehensif
+                    </p>
                 </div>
 
-                <!-- Control Panel -->
-                <div class="service-item">
-                    <img src="assets/img/002.jpeg" alt="Control Panel" class="service-image" data-service-id="2" data-title="services.item2.title" data-desc="services.item2.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item2.title">Panel Kontrol Elevator (Control Cabinet)</h3>
-                        <p data-translate="services.item2.desc">
-                            Panel kontrol lengkap dengan sistem kelistrikan, kontaktor, relay, dan komponen elektronik. Menyediakan perbaikan, upgrade sistem kontrol, dan penggantian komponen rusak untuk memastikan operasional optimal.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.repair">Perbaikan</span>
+                <!-- Services Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(1, 'Mesin Traksi Elevator', 'Mesin penggerak utama elevator...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/001.jpeg" alt="Traction Machine" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">Mesin Traksi Elevator</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Mesin penggerak utama elevator dengan sistem traksi berkualitas tinggi</p>
+                            <span class="inline-block px-3 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full">Spare Part</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Elevator Cabin -->
-                <div class="service-item">
-                    <img src="assets/img/003.jpeg" alt="Elevator Cabin" class="service-image" data-service-id="3" data-title="services.item3.title" data-desc="services.item3.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item3.title">Interior Kabin Elevator</h3>
-                        <p data-translate="services.item3.desc">
-                            Layanan perbaikan dan modernisasi interior kabin elevator termasuk sistem pencahayaan, panel dinding, lantai, dan komponen keselamatan untuk meningkatkan kenyamanan dan estetika.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.modernization">Modernisasi</span>
+                    <!-- Service Card 2 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(2, 'Panel Kontrol', 'Panel kontrol lengkap...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/002.jpeg" alt="Control Panel" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">Panel Kontrol Elevator</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Panel kontrol lengkap dengan sistem kelistrikan modern dan aman</p>
+                            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Perbaikan</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Door Mechanism -->
-                <div class="service-item">
-                    <img src="assets/img/004.jpeg" alt="Door Mechanism" class="service-image" data-service-id="4" data-title="services.item4.title" data-desc="services.item4.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item4.title">Mekanisme Pintu Elevator (Door Operator)</h3>
-                        <p data-translate="services.item4.desc">
-                            Sistem pembuka/penutup pintu otomatis elevator dengan motor penggerak presisi. Layanan meliputi perbaikan, adjustment, penggantian spare part, dan maintenance berkala untuk operasi pintu yang smooth.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.maintenance">Maintenance</span>
+                    <!-- Service Card 3 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(3, 'Interior Kabin', 'Layanan perbaikan interior...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/003.jpeg" alt="Elevator Cabin" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">Interior Kabin Elevator</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Layanan perbaikan dan modernisasi interior dengan desain kontemporer</p>
+                            <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full">Modernisasi</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Inverter -->
-                <div class="service-item">
-                    <img src="assets/img/005.jpeg" alt="Inverter Drive" class="service-image" data-service-id="5" data-title="services.item5.title" data-desc="services.item5.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item5.title">Inverter Drive & Variable Frequency Drive</h3>
-                        <p data-translate="services.item5.desc">
-                            Komponen pengatur kecepatan dan kontrol motor elevator modern. Menyediakan perbaikan inverter, penggantian unit rusak, dan upgrade ke teknologi terbaru untuk efisiensi energi maksimal.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.sparepart">Spare Part</span>
+                    <!-- Service Card 4 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(4, 'Door Operator', 'Mekanisme pembuka pintu...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/004.jpeg" alt="Door Mechanism" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-green-600 transition-colors">Mekanisme Pintu Elevator</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Sistem pembuka/penutup pintu otomatis dengan sensor canggih</p>
+                            <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Maintenance</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- PCB Board -->
-                <div class="service-item">
-                    <img src="assets/img/006.jpeg" alt="PCB Board" class="service-image" data-service-id="6" data-title="services.item6.title" data-desc="services.item6.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item6.title">PCB Board & Control Circuit</h3>
-                        <p data-translate="services.item6.desc">
-                            Papan sirkuit elektronik (PCB) untuk sistem kontrol elevator. Layanan troubleshooting, perbaikan komponen elektronik, replacement board, dan upgrade firmware untuk performa optimal.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.repair">Perbaikan</span>
+                    <!-- Service Card 5 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(5, 'Inverter Drive', 'Komponen pengatur kecepatan...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/005.jpeg" alt="Inverter Drive" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">Inverter Drive & VFD</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Komponen pengatur kecepatan motor dengan efisiensi energi optimal</p>
+                            <span class="inline-block px-3 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full">Spare Part</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Elevator Interior View -->
-                <div class="service-item">
-                    <img src="assets/img/007.jpeg" alt="Elevator Interior" class="service-image" data-service-id="7" data-title="services.item7.title" data-desc="services.item7.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item7.title">Perbaikan & Renovasi Interior Kabin</h3>
-                        <p data-translate="services.item7.desc">
-                            Layanan lengkap renovasi dan modernisasi interior kabin elevator termasuk upgrade lighting system, panel kontrol dalam kabin, dan material finishing berkualitas premium.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.modernization">Modernisasi</span>
+                    <!-- Service Card 6 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(6, 'PCB Board', 'Papan sirkuit elektronik...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/006.jpeg" alt="PCB Board" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">PCB Board & Control Circuit</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Papan sirkuit elektronik untuk sistem kontrol terpusat</p>
+                            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Perbaikan</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Guide Rail -->
-                <div class="service-item">
-                    <img src="assets/img/008.jpeg" alt="Guide Rail" class="service-image" data-service-id="8" data-title="services.item8.title" data-desc="services.item8.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item8.title">Guide Rail & Mounting System</h3>
-                        <p data-translate="services.item8.desc">
-                            Rel pemandu elevator untuk memastikan gerakan kabin yang stabil dan presisi. Menyediakan alignment, perbaikan bracket mounting, dan penggantian rel yang aus atau rusak.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.maintenance">Maintenance</span>
+                    <!-- Service Card 7 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(7, 'Renovasi Interior', 'Layanan lengkap renovasi...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/007.jpeg" alt="Elevator Interior" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">Perbaikan & Renovasi Interior</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Layanan lengkap renovasi kabin dengan material premium</p>
+                            <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full">Modernisasi</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Escalator Traction -->
-                <div class="service-item">
-                    <img src="assets/img/009.jpeg" alt="Escalator Machine" class="service-image" data-service-id="9" data-title="services.item9.title" data-desc="services.item9.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item9.title">Mesin Escalator & Drive System</h3>
-                        <p data-translate="services.item9.desc">
-                            Unit mesin penggerak escalator dengan sistem transmisi dan brake safety. Layanan overhaul mesin, penggantian gear box, motor drive, dan maintenance preventif untuk performa smooth.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.sparepart">Spare Part</span>
+                    <!-- Service Card 8 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(8, 'Guide Rail', 'Rel pemandu elevator...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/008.jpeg" alt="Guide Rail" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-green-600 transition-colors">Guide Rail & Mounting System</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Rel pemandu untuk gerakan kabin stabil dan presisi</p>
+                            <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Maintenance</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Main PCB Control -->
-                <div class="service-item">
-                    <img src="assets/img/010.jpeg" alt="Main Control Board" class="service-image" data-service-id="10" data-title="services.item10.title" data-desc="services.item10.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item10.title">Main Control Board Elevator</h3>
-                        <p data-translate="services.item10.desc">
-                            PCB utama sistem kontrol elevator dengan microprocessor dan komponen digital. Perbaikan circuit, replacement IC/komponen, dan programming untuk semua brand elevator.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.repair">Perbaikan</span>
+                    <!-- Service Card 9 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(9, 'Escalator Machine', 'Unit mesin penggerak...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/009.jpeg" alt="Escalator Machine" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">Mesin Escalator & Drive System</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Unit mesin penggerak escalator dengan performa tinggi</p>
+                            <span class="inline-block px-3 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full">Spare Part</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Communication Board -->
-                <div class="service-item">
-                    <img src="assets/img/011.jpeg" alt="Communication Board" class="service-image" data-service-id="11" data-title="services.item11.title" data-desc="services.item11.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item11.title">Communication & Signal Board</h3>
-                        <p data-translate="services.item11.desc">
-                            Board komunikasi untuk sistem panggilan dan indikator lantai elevator. Menyediakan perbaikan, kalibrasi signal, dan upgrade sistem komunikasi antar floor.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.repair">Perbaikan</span>
+                    <!-- Service Card 10 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(10, 'Main Control Board', 'PCB utama sistem kontrol...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/010.jpeg" alt="Main Control Board" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">Main Control Board Elevator</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">PCB utama dengan microprocessor untuk semua brand elevator</p>
+                            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Perbaikan</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Display Board -->
-                <div class="service-item">
-                    <img src="assets/img/012.jpeg" alt="Display Board" class="service-image" data-service-id="12" data-title="services.item12.title" data-desc="services.item12.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item12.title">Display Board & Floor Indicator</h3>
-                        <p data-translate="services.item12.desc">
-                            Papan display digital untuk indikator lantai dan informasi elevator. Layanan penggantian LED/LCD display, repair board, dan upgrade ke display modern dengan teknologi terkini.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.modernization">Modernisasi</span>
+                    <!-- Service Card 11 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(11, 'Communication Board', 'Board komunikasi...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/011.jpeg" alt="Communication Board" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">Communication & Signal Board</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Board komunikasi untuk sistem panggilan modern</p>
+                            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Perbaikan</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Elevator Motor -->
-                <div class="service-item">
-                    <img src="assets/img/013.jpeg" alt="Elevator Motor" class="service-image" data-service-id="13" data-title="services.item13.title" data-desc="services.item13.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item13.title">Motor Listrik Elevator & Rewinding</h3>
-                        <p data-translate="services.item13.desc">
-                            Motor penggerak elevator dengan berbagai kapasitas daya. Layanan rewinding motor, bearing replacement, balancing, dan overhaul lengkap untuk performa optimal dan hemat energi.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.sparepart">Spare Part</span>
+                    <!-- Service Card 12 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(12, 'Display Board', 'Papan display digital...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/012.jpeg" alt="Display Board" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">Display Board & Floor Indicator</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Papan display digital dengan teknologi LED/LCD terbaru</p>
+                            <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full">Modernisasi</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Remote Control -->
-                <div class="service-item">
-                    <img src="assets/img/014.jpeg" alt="Remote Control Panel" class="service-image" data-service-id="14" data-title="services.item14.title" data-desc="services.item14.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item14.title">Panel Kontrol Remote & Monitoring</h3>
-                        <p data-translate="services.item14.desc">
-                            Sistem kontrol jarak jauh dan monitoring untuk elevator modern. Instalasi, konfigurasi, dan integrasi dengan building management system untuk kontrol terpusat.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.modernization">Modernisasi</span>
+                    <!-- Service Card 13 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(13, 'Elevator Motor', 'Motor listrik elevator...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/013.jpeg" alt="Elevator Motor" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">Motor Listrik Elevator & Rewinding</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Motor penggerak dengan berbagai kapasitas dan rewinding berkualitas</p>
+                            <span class="inline-block px-3 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full">Spare Part</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- V-Belt -->
-                <div class="service-item">
-                    <img src="assets/img/015.jpeg" alt="V-Belt" class="service-image" data-service-id="15" data-title="services.item15.title" data-desc="services.item15.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item15.title">V-Belt & Transmission Belt</h3>
-                        <p data-translate="services.item15.desc">
-                            Belt transmisi untuk sistem penggerak elevator dan escalator. Menyediakan berbagai ukuran dan tipe belt berkualitas tinggi, instalasi, dan adjustment tensioning yang tepat.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.sparepart">Spare Part</span>
+                    <!-- Service Card 14 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(14, 'Remote Control', 'Panel kontrol remote...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/014.jpeg" alt="Remote Control Panel" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">Panel Kontrol Remote & Monitoring</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Sistem kontrol jarak jauh dengan integrasi building management</p>
+                            <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full">Modernisasi</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Escalator Wheel -->
-                <div class="service-item">
-                    <img src="assets/img/016.jpeg" alt="Escalator Wheel" class="service-image" data-service-id="16" data-title="services.item16.title" data-desc="services.item16.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item16.title">Roda & Roller Escalator</h3>
-                        <p data-translate="services.item16.desc">
-                            Step roller dan guide wheel untuk sistem escalator. Penggantian roller aus, bearing maintenance, dan balancing untuk operasi escalator yang halus dan minim noise.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.maintenance">Maintenance</span>
+                    <!-- Service Card 15 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(15, 'V-Belt', 'V-Belt transmisi...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/015.jpeg" alt="V-Belt" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">V-Belt & Transmission Belt</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Belt transmisi berkualitas tinggi dengan berbagai ukuran dan tipe</p>
+                            <span class="inline-block px-3 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full">Spare Part</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Encoder -->
-                <div class="service-item">
-                    <img src="assets/img/017.jpeg" alt="Encoder" class="service-image" data-service-id="17" data-title="services.item17.title" data-desc="services.item17.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item17.title">Encoder & Position Sensor</h3>
-                        <p data-translate="services.item17.desc">
-                            Sensor posisi dan encoder untuk akurasi pergerakan elevator. Kalibrasi, penggantian sensor rusak, dan upgrade ke encoder presisi tinggi untuk leveling yang sempurna.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.repair">Perbaikan</span>
+                    <!-- Service Card 16 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(16, 'Escalator Wheel', 'Roda escalator...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/016.jpeg" alt="Escalator Wheel" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-green-600 transition-colors">Roda & Roller Escalator</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Step roller dan guide wheel untuk operasi escalator halus</p>
+                            <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Maintenance</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Brake Resistor -->
-                <div class="service-item">
-                    <img src="assets/img/018.jpeg" alt="Brake Resistor" class="service-image" data-service-id="18" data-title="services.item18.title" data-desc="services.item18.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item18.title">Brake Resistor & Safety Brake</h3>
-                        <p data-translate="services.item18.desc">
-                            Sistem pengereman darurat dan resistor untuk kontrol kecepatan. Testing brake system, penggantian brake pad/shoe, dan calibration untuk keamanan maksimal sesuai standar.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.maintenance">Maintenance</span>
+                    <!-- Service Card 17 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(17, 'Encoder', 'Encoder & position sensor...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/017.jpeg" alt="Encoder" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">Encoder & Position Sensor</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Sensor posisi dengan akurasi tinggi untuk leveling sempurna</p>
+                            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Perbaikan</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Safety Device -->
-                <div class="service-item">
-                    <img src="assets/img/019.jpeg" alt="Safety Device" class="service-image" data-service-id="19" data-title="services.item19.title" data-desc="services.item19.desc">
-                    <div class="service-content">
-                        <h3 data-translate="services.item19.title">Perangkat Keselamatan & Safety Switch</h3>
-                        <p data-translate="services.item19.desc">
-                            Safety device lengkap termasuk over-speed governor, safety gear, door lock, dan emergency switch. Testing, sertifikasi, dan penggantian komponen safety sesuai regulasi.
-                        </p>
-                        <span class="service-tag" data-translate="services.tag.maintenance">Maintenance</span>
+                    <!-- Service Card 18 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(18, 'Brake Resistor', 'Brake resistor & safety brake...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/018.jpeg" alt="Brake Resistor" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-green-600 transition-colors">Brake Resistor & Safety Brake</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Sistem pengereman darurat dengan kalibrasi presisi dan aman</p>
+                            <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Maintenance</span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 19 -->
+                    <div class="card-hover group bg-white rounded-2xl overflow-hidden border border-slate-200 glow-box cursor-pointer shadow-lg transition-all duration-300" onclick="openServiceModal(19, 'Safety Device', 'Perangkat keselamatan...')">
+                        <div class="h-52 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden relative">
+                            <img src="assets/img/019.jpeg" alt="Safety Device" class="w-full h-full object-cover service-image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-green-600 transition-colors">Perangkat Keselamatan & Safety Switch</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-2">Safety device lengkap sesuai standar regulasi dan sertifikasi</p>
+                            <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Maintenance</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -308,59 +501,97 @@
     </main>
 
     <!-- Service Modal -->
-    <div id="serviceModal" class="service-modal">
-        <div class="modal-content">
-            <button type="button" class="modal-close">&times;</button>
-            <div class="modal-container">
-                <div class="modal-image-section">
-                    <img id="modalMainImage" src="" alt="Service Image" class="modal-main-image">
-                </div>
-                <div class="modal-info-section">
-                    <h2 id="modalServiceTitle"></h2>
-                    <p id="modalServiceDesc"></p>
+    <div id="serviceModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-40 hidden" onclick="closeServiceModal()">
+        <div class="bg-white rounded-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+            <div class="sticky top-0 bg-white border-b border-slate-200 flex items-center justify-between p-6">
+                <h2 id="modalServiceTitle" class="text-3xl font-black text-slate-900"></h2>
+                <button onclick="closeServiceModal()" class="text-slate-500 hover:text-slate-900 text-2xl">&times;</button>
+            </div>
+            <div class="p-6">
+                <img id="modalMainImage" src="" alt="Service Image" class="w-full h-96 object-cover rounded-xl mb-6">
+                <p id="modalServiceDesc" class="text-slate-600 leading-relaxed text-lg"></p>
+                <div class="mt-8 flex gap-4">
+                    <a href="kontak.html" class="flex-1 px-6 py-3 bg-gradient-accent text-white font-bold rounded-lg hover:shadow-xl transition-all duration-300 text-center">
+                        <i class="fas fa-envelope mr-2"></i>Konsultasi
+                    </a>
+                    <a href="https://wa.me/6281318833002" target="_blank" class="flex-1 px-6 py-3 bg-green-500 text-white font-bold rounded-lg hover:shadow-xl transition-all duration-300 text-center">
+                        <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- WhatsApp FAB -->
-    <a href="https://wa.me/6281318833002" class="whatsapp-fab" target="_blank">
+    <a href="https://wa.me/6281318833002" class="fixed bottom-8 right-8 w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl hover:scale-110 transition-transform duration-300 shadow-lg z-30" target="_blank" title="Chat dengan WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>CV. TEKNIK MANDIRI SEJAHTERA</h3>
-                <p data-translate="footer.desc">
-                    Partner terpercaya untuk solusi pengadaan spare part, perbaikan, dan perawatan elevator & escalator berkualitas tinggi.
-                </p>
+    <footer class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-slate-100 border-t border-amber-400/20 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-amber-400 mb-4">CV. TEKNIK MANDIRI</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">Partner terpercaya untuk solusi pengadaan spare part, perbaikan, dan perawatan elevator & escalator berkualitas tinggi.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-amber-400 mb-4">Layanan</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors">Pengadaan Spare Part</li>
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors">Perbaikan & Repair</li>
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors">Maintenance Berkala</li>
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors">Modernisasi Sistem</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-amber-400 mb-4">Hubungi Kami</h3>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><i class="fas fa-phone text-amber-400 mr-2"></i>0813-1883-3002</li>
+                        <li><i class="fas fa-envelope text-amber-400 mr-2"></i>info@teknikmandiri.id</li>
+                        <li><i class="fas fa-map-marker-alt text-amber-400 mr-2"></i>Jakarta, Indonesia</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-amber-400 mb-4">Follow Us</h3>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-amber-400/20 hover:bg-amber-400/40 flex items-center justify-center transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-amber-400/20 hover:bg-amber-400/40 flex items-center justify-center transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-amber-400/20 hover:bg-amber-400/40 flex items-center justify-center transition-all"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3 data-translate="footer.services.title">Layanan</h3>
-                <ul>
-                    <li data-translate="footer.services.item1">Pengadaan Spare Part</li>
-                    <li data-translate="footer.services.item2">Perbaikan & Repair</li>
-                    <li data-translate="footer.services.item3">Maintenance Berkala</li>
-                    <li data-translate="footer.services.item4">Modernisasi Sistem</li>
-                </ul>
+            <div class="border-t border-slate-700 pt-8 text-center text-sm text-slate-400">
+                <p>© 2024 CV. TEKNIK MANDIRI SEJAHTERA - All Rights Reserved</p>
             </div>
-            <div class="footer-section">
-                <h3 data-translate="footer.contact.title">Hubungi Kami</h3>
-                <ul>
-                    <li>📧 Email: info@teknikmandirisejahtera.com</li>
-                    <li>📞 Phone: +6281318833002</li>
-                    <li>🏢 Jakarta, Indonesia</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 CV. TEKNIK MANDIRI SEJAHTERA. <span data-translate="footer.rights">All Rights Reserved</span>.</p>
         </div>
     </footer>
 
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" onclick="scrollToTop()" class="fixed bottom-32 lg:bottom-12 right-6 w-14 h-14 rounded-full bg-gradient-accent shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 pointer-events-none hover:scale-110 flex items-center justify-center text-white font-bold text-xl" title="Kembali ke Atas">
+        ↑
+    </button>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/6281318833002" target="_blank" class="fixed bottom-12 lg:bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center text-white text-3xl opacity-0 pointer-events-none" id="whatsappFab" title="Chat WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script src="assets/js/js.js"></script>
+    <script>
+        function openServiceModal(id, title, desc) {
+            const modal = document.getElementById('serviceModal');
+            document.getElementById('modalServiceTitle').textContent = title;
+            document.getElementById('modalMainImage').src = 'assets/img/' + String(id).padStart(3, '0') + '.jpeg';
+            document.getElementById('modalServiceDesc').textContent = desc;
+            modal.classList.remove('hidden');
+        }
+
+        function closeServiceModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
 

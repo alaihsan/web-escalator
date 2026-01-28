@@ -6,195 +6,329 @@
     <title>Tentang Kami - CV. TEKNIK MANDIRI SEJAHTERA</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="loader-spinner"></div>
-    </div>
+    <style>
+        .gradient-accent {
+            background: linear-gradient(to right, #fbbf24, #f59e0b, #ea580c);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-0.75rem);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
 
-    <!-- Navbar Desktop -->
-    <nav class="navbar">
-        <div class="logo">
-            <div class="logo-icon">TM</div>
-            <div class="logo-text">
-                <h1>TEKNIK MANDIRI SEJAHTERA</h1>
-                <span data-translate="tagline">ELEVATOR & ESCALATOR EXPERTS</span>
+        .glow-box {
+            position: relative;
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.2);
+        }
+        
+        .stat-counter {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900 transition-colors duration-300">
+    <!-- Loader -->
+    <div class="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 to-blue-900 z-50 loader" id="loader">
+        <div class="relative">
+            <div class="w-20 h-20 border-4 border-amber-400/30 border-t-amber-400 rounded-full animate-spin"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full animate-pulse"></div>
             </div>
         </div>
-        <div class="nav-menu">
-            <a class="nav-link" href="index.html" data-translate="menu.home">Beranda</a>
-            <a class="nav-link active" href="tentangkami.html" data-translate="menu.about">Tentang Kami</a>
-            <a class="nav-link" href="jasa-layanan.html" data-translate="menu.services">Jasa & Layanan</a>
-            <a class="nav-link" href="kontak.html" data-translate="menu.contact">Kontak Kami</a>
-            <button class="lang-switcher" onclick="toggleLanguage()">
-                <span id="lang-text">EN</span> 🌐
-            </button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-40">
+        <div class="backdrop-blur-md bg-gradient-to-r from-slate-900/95 via-blue-900/95 to-slate-900/95 border-b border-amber-400/20 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="w-14 h-14 bg-gradient-accent rounded-2xl flex items-center justify-center font-bold text-white text-lg shadow-lg hover:shadow-xl transition-all hover:scale-110 hover:rotate-3">TM</div>
+                    <div class="hidden sm:flex flex-col">
+                        <h1 class="text-xl font-bold text-white leading-tight">TEKNIK MANDIRI</h1>
+                        <span class="text-xs font-semibold text-amber-400 tracking-wider" data-translate="tagline">ELEVATOR & ESCALATOR EXPERTS</span>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.home">Beranda</a>
+                    <a href="tentangkami.html" class="text-amber-400 font-medium">Tentang Kami</a>
+                    <a href="jasa-layanan.html" class="text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.services">Jasa & Layanan</a>
+                    <a href="kontak.html" class="text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.contact">Kontak Kami</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleLanguage()" class="px-4 py-2 bg-amber-400/20 hover:bg-amber-400/30 border border-amber-400 text-amber-400 rounded-full font-semibold text-sm transition-all duration-300 flex items-center gap-1">
+                        <span id="lang-text" class="font-bold">EN</span> 🌐
+                    </button>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <!-- Bottom Navigation Mobile -->
-    <div class="bottom-nav">
-        <div class="bottom-nav-container">
-            <div class="bottom-nav-item" onclick="window.location.href='index.html'">
-                <div class="bottom-nav-icon">🏠</div>
-                <div class="bottom-nav-label" data-translate="menu.home">Beranda</div>
-            </div>
-            <div class="bottom-nav-item active">
-                <div class="bottom-nav-icon">ℹ️</div>
-                <div class="bottom-nav-label" data-translate="menu.about">Tentang</div>
-            </div>
-            <div class="bottom-nav-item" onclick="window.location.href='jasa-layanan.html'">
-                <div class="bottom-nav-icon">⚙️</div>
-                <div class="bottom-nav-label" data-translate="menu.services">Layanan</div>
-            </div>
-            <div class="bottom-nav-item" onclick="toggleLanguage()">
-                <div class="bottom-nav-icon">🌐</div>
-                <div class="bottom-nav-label" id="lang-text-mobile">EN</div>
-            </div>
+    <!-- Mobile Navigation -->
+    <div class="fixed bottom-0 left-0 right-0 lg:hidden z-40 bg-gradient-to-t from-slate-900/98 to-slate-900/90 border-t border-amber-400/20 backdrop-blur-md">
+        <div class="flex justify-around items-center py-2">
+            <a href="index.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs font-medium" data-translate="menu.home">Beranda</span>
+            </a>
+            <a href="tentangkami.html" class="flex flex-col items-center gap-1 px-4 py-2 text-amber-400 transition-colors">
+                <i class="fas fa-info-circle text-xl"></i>
+                <span class="text-xs font-medium">Tentang</span>
+            </a>
+            <a href="jasa-layanan.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+                <i class="fas fa-cog text-xl"></i>
+                <span class="text-xs font-medium" data-translate="menu.services">Layanan</span>
+            </a>
+            <a href="kontak.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+                <i class="fas fa-phone text-xl"></i>
+                <span class="text-xs font-medium" data-translate="menu.contact">Kontak</span>
+            </a>
         </div>
     </div>
 
     <!-- Scroll to Top -->
-    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+    <button id="scrollTop" onclick="scrollToTop()" class="fixed bottom-32 lg:bottom-12 right-6 w-14 h-14 rounded-full bg-gradient-accent shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 pointer-events-none hover:scale-110 flex items-center justify-center text-white font-bold text-xl z-30">↑</button>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/6281318833002" target="_blank" class="fixed bottom-12 lg:bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center text-white text-3xl opacity-0 pointer-events-none z-30" id="whatsappFab">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <!-- About Page -->
-        <section class="hero" style="background-image: url('assets/img/025.jpg');">
-            <div class="hero-overlay"></div>
-            <div class="hero-wrapper">
-                <div class="hero-content">
-                    <h2 data-translate="about.hero.title">Tentang <span class="accent-text">CV. TEKNIK MANDIRI SEJAHTERA</span></h2>
-                    <p data-translate="about.hero.subtitle">
-                        Partner terpercaya Anda untuk solusi elevator dan escalator berkualitas
-                    </p>
+    <main class="pt-20 pb-20 lg:pb-8">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 pt-8">
+            <div class="absolute inset-0 opacity-30" style="background-image: url('assets/img/025.jpg'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+            
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute -top-1/2 -right-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse"></div>
+                <div class="absolute -bottom-1/2 -left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+            </div>
+
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+                    <span data-translate="about.hero.title">Tentang</span>
+                    <span class="block mt-2 bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 bg-clip-text text-transparent">CV. TEKNIK MANDIRI SEJAHTERA</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed" data-translate="about.hero.subtitle">
+                    Partner terpercaya Anda untuk solusi elevator dan escalator berkualitas
+                </p>
+            </div>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+                <i class="fas fa-chevron-down text-amber-400 text-2xl"></i>
+            </div>
+        </section>
+
+        <!-- About Content Section -->
+        <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white transition-colors duration-300">
+            <div class="max-w-6xl mx-auto">
+                <!-- Section Title -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-black text-slate-900 mb-4" data-translate="about.content.title">
+                        Siapa Kami
+                    </h2>
+                    <div class="h-1 w-24 bg-gradient-accent rounded-full mx-auto shadow-lg"></div>
+                </div>
+
+                <!-- About Grid -->
+                <div class="grid lg:grid-cols-3 gap-8 items-start mb-12">
+                    <!-- Text Content -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <p class="text-lg leading-relaxed text-slate-700" data-translate="about.content.p1">
+                            Kami adalah sebuah perusahaan yang menyediakan layanan pengadaan spare part, perbaikan serta perawatan elevator dan escalator dengan harga terjangkau, terpercaya dan dilengkapi garansi.
+                        </p>
+                        <p class="text-lg leading-relaxed text-slate-700" data-translate="about.content.p2">
+                            Apabila Anda sedang mencari solusi untuk pengadaan spare part, perbaikan serta perawatan elevator dan escalator pada gedung Anda, kami siap memberikan solusi yang terbaik dengan biaya dan kualitas terjamin.
+                        </p>
+                        <p class="text-lg leading-relaxed text-slate-700" data-translate="about.content.p3">
+                            Kami juga menawarkan jasa modernisasi untuk elevator dan escalator sebagai peningkatan teknologi yang lebih baru.
+                        </p>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="space-y-4">
+                        <div class="card-hover p-6 bg-gradient-to-br from-slate-900 to-blue-900 rounded-2xl text-white shadow-lg glow-box">
+                            <div class="stat-counter">10+</div>
+                            <p class="text-sm font-semibold text-amber-400 mt-2">Tahun Pengalaman</p>
+                        </div>
+                        <div class="card-hover p-6 bg-gradient-to-br from-slate-900 to-blue-900 rounded-2xl text-white shadow-lg glow-box">
+                            <div class="stat-counter">500+</div>
+                            <p class="text-sm font-semibold text-amber-400 mt-2">Proyek Selesai</p>
+                        </div>
+                        <div class="card-hover p-6 bg-gradient-to-br from-slate-900 to-blue-900 rounded-2xl text-white shadow-lg glow-box">
+                            <div class="stat-counter">99%</div>
+                            <p class="text-sm font-semibold text-amber-400 mt-2">Kepuasan Klien</p>
+                        </div>
+                        <div class="card-hover p-6 bg-gradient-to-br from-slate-900 to-blue-900 rounded-2xl text-white shadow-lg glow-box">
+                            <div class="stat-counter">24/7</div>
+                            <p class="text-sm font-semibold text-amber-400 mt-2">Layanan Penuh</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="features">
-            <div class="about-wrapper">
-                <!-- Section 1: Siapa Kami -->
-                <div class="about-section">
-                    <div class="section-header">
-                        <h3 data-translate="about.content.title">Siapa Kami</h3>
-                        <div class="section-line"></div>
-                    </div>
-                    <div class="about-grid">
-                        <div class="about-text">
-                            <p data-translate="about.content.p1">
-                                Kami adalah sebuah perusahaan yang menyediakan layanan pengadaan spare part, perbaikan serta perawatan elevator dan escalator dengan harga terjangkau, terpercaya dan dilengkapi garansi.
-                            </p>
-                            <p data-translate="about.content.p2">
-                                Apabila Anda sedang mencari solusi untuk pengadaan spare part, perbaikan serta perawatan elevator dan escalator pada gedung Anda, kami siap memberikan solusi yang terbaik dengan biaya dan kualitas terjamin.
-                            </p>
-                            <p data-translate="about.content.p3">
-                                Kami juga menawarkan jasa modernisasi untuk elevator dan escalator sebagai peningkatan teknologi yang lebih baru.
-                            </p>
-                        </div>
-                        <div class="about-stats">
-                            <div class="stat-card">
-                                <div class="stat-number">10+</div>
-                                <div class="stat-label">Tahun Pengalaman</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">500+</div>
-                                <div class="stat-label">Proyek Selesai</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">99%</div>
-                                <div class="stat-label">Kepuasan Klien</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number">24/7</div>
-                                <div class="stat-label">Dukungan Penuh</div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Commitment Section -->
+        <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 dark:from-slate-950 to-white dark:to-slate-900 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto">
+                <!-- Section Title -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4" data-translate="about.highlight.title">
+                        Komitmen Kami
+                    </h2>
+                    <div class="h-1 w-24 bg-gradient-accent rounded-full mx-auto shadow-lg"></div>
                 </div>
 
-                <!-- Section 2: Komitmen Kami -->
-                <div class="about-section">
-                    <div class="section-header">
-                        <h3 data-translate="about.highlight.title">Komitmen Kami</h3>
-                        <div class="section-line"></div>
+                <!-- Commitment Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="card-hover p-8 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">🏆</div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3" data-translate="about.highlight.item1">Kualitas Terbaik</h3>
+                        <p class="text-slate-600 dark:text-slate-400">Layanan dengan teknisi bersertifikat dan standar internasional</p>
                     </div>
-                    <div class="commitment-grid">
-                        <div class="commitment-card">
-                            <div class="commitment-icon">🏆</div>
-                            <h4 data-translate="about.highlight.item1">Kualitas Terbaik</h4>
-                            <p>Layanan dengan teknisi bersertifikat dan standar internasional</p>
-                        </div>
-                        <div class="commitment-card">
-                            <div class="commitment-icon">🔧</div>
-                            <h4 data-translate="about.highlight.item2">Spare Part Original</h4>
-                            <p>Suku cadang original dan kompatibel dengan kualitas terjamin</p>
-                        </div>
-                        <div class="commitment-card">
-                            <div class="commitment-icon">💰</div>
-                            <h4 data-translate="about.highlight.item3">Harga Kompetitif</h4>
-                            <p>Harga terjangkau dengan transparansi biaya yang jelas</p>
-                        </div>
-                        <div class="commitment-card">
-                            <div class="commitment-icon">✓</div>
-                            <h4 data-translate="about.highlight.item4">Garansi Resmi</h4>
-                            <p>Garansi lengkap untuk setiap layanan dan produk yang kami tawarkan</p>
-                        </div>
-                        <div class="commitment-card">
-                            <div class="commitment-icon">📞</div>
-                            <h4 data-translate="about.highlight.item5">Layanan Responsif</h4>
-                            <p>Purna jual yang responsif dan siap membantu kapan saja</p>
-                        </div>
-                        <div class="commitment-card">
-                            <div class="commitment-icon">⚡</div>
-                            <h4 data-translate="about.highlight.item6">Modernisasi Teknologi</h4>
-                            <p>Upgrade sistem untuk efisiensi dan keamanan maksimal</p>
-                        </div>
+
+                    <!-- Card 2 -->
+                    <div class="card-hover p-8 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">🔧</div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3" data-translate="about.highlight.item2">Spare Part Original</h3>
+                        <p class="text-slate-600 dark:text-slate-400">Suku cadang original dan kompatibel dengan kualitas terjamin</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card-hover p-8 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">💰</div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3" data-translate="about.highlight.item3">Harga Kompetitif</h3>
+                        <p class="text-slate-600 dark:text-slate-400">Harga terjangkau dengan transparansi biaya yang jelas</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="card-hover p-8 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">✓</div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3" data-translate="about.highlight.item4">Garansi Resmi</h3>
+                        <p class="text-slate-600 dark:text-slate-400">Garansi lengkap untuk setiap layanan dan produk yang kami tawarkan</p>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="card-hover p-8 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">📞</div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3" data-translate="about.highlight.item5">Layanan Responsif</h3>
+                        <p class="text-slate-600 dark:text-slate-400">Purna jual yang responsif dan siap membantu kapan saja</p>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="card-hover p-8 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 glow-box group">
+                        <div class="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">⚡</div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3" data-translate="about.highlight.item6">Modernisasi Teknologi</h3>
+                        <p class="text-slate-600 dark:text-slate-400">Upgrade sistem untuk efisiensi energi maksimal</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- WhatsApp FAB -->
-    <a href="https://wa.me/6281318833002" class="whatsapp-fab" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>CV. TEKNIK MANDIRI SEJAHTERA</h3>
-                <p data-translate="footer.desc">
-                    Partner terpercaya untuk solusi pengadaan spare part, perbaikan, dan perawatan elevator & escalator berkualitas tinggi.
-                </p>
+    <footer class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-slate-950 dark:via-blue-950 dark:to-slate-950 text-slate-100 border-t border-amber-400/20 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-amber-400 mb-4">CV. TEKNIK MANDIRI</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed" data-translate="footer.desc">Partner terpercaya untuk solusi pengadaan spare part, perbaikan, dan perawatan elevator & escalator berkualitas tinggi.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-amber-400 mb-4" data-translate="footer.services.title">Layanan</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors" data-translate="footer.services.item1">Pengadaan Spare Part</li>
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors" data-translate="footer.services.item2">Perbaikan & Repair</li>
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors" data-translate="footer.services.item3">Maintenance Berkala</li>
+                        <li class="text-slate-300 hover:text-amber-400 transition-colors" data-translate="footer.services.item4">Modernisasi Sistem</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-amber-400 mb-4" data-translate="footer.contact.title">Hubungi Kami</h3>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><i class="fas fa-phone text-amber-400 mr-2"></i>0813-1883-3002</li>
+                        <li><i class="fas fa-envelope text-amber-400 mr-2"></i>info@teknikmandiri.id</li>
+                        <li><i class="fas fa-map-marker-alt text-amber-400 mr-2"></i>Jakarta, Indonesia</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-amber-400 mb-4">Follow Us</h3>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-amber-400/20 hover:bg-amber-400/40 flex items-center justify-center transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-amber-400/20 hover:bg-amber-400/40 flex items-center justify-center transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-amber-400/20 hover:bg-amber-400/40 flex items-center justify-center transition-all"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3 data-translate="footer.services.title">Layanan</h3>
-                <ul>
-                    <li data-translate="footer.services.item1">Pengadaan Spare Part</li>
-                    <li data-translate="footer.services.item2">Perbaikan & Repair</li>
-                    <li data-translate="footer.services.item3">Maintenance Berkala</li>
-                    <li data-translate="footer.services.item4">Modernisasi Sistem</li>
-                </ul>
+            <div class="border-t border-slate-700 pt-8 text-center text-sm text-slate-400">
+                <p>© 2024 CV. TEKNIK MANDIRI SEJAHTERA - All Rights Reserved</p>
             </div>
-            <div class="footer-section">
-                <h3 data-translate="footer.contact.title">Hubungi Kami</h3>
-                <ul>
-                    <li>📧 Email: info@teknikmandirisejahtera.com</li>
-                    <li>📞 Phone: +6281318833002</li>
-                    <li>🏢 Jakarta, Indonesia</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 CV. TEKNIK MANDIRI SEJAHTERA. <span data-translate="footer.rights">All Rights Reserved</span>.</p>
         </div>
     </footer>
 
     <script src="assets/js/js.js"></script>
+    <script>
+        function scrollToTop() {
+            gsap.to(window, { scrollTo: 0, duration: 0.8 });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.pointerEvents = 'none';
+                }
+            }, 800);
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animate stat cards
+            gsap.utils.toArray('.card-hover').forEach((card, index) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.8,
+                    delay: index * 0.1,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+
+            ScrollTrigger.create({
+                onUpdate: (self) => {
+                    const scrollTop = document.getElementById('scrollTop');
+                    const whatsappFab = document.getElementById('whatsappFab');
+                    if (self.getVelocity() > 0 || window.pageYOffset > 300) {
+                        scrollTop.classList.add('opacity-100', 'pointer-events-auto');
+                        scrollTop.classList.remove('opacity-0', 'pointer-events-none');
+                        whatsappFab.classList.add('opacity-100', 'pointer-events-auto');
+                        whatsappFab.classList.remove('opacity-0', 'pointer-events-none');
+                    } else {
+                        scrollTop.classList.add('opacity-0', 'pointer-events-none');
+                        scrollTop.classList.remove('opacity-100', 'pointer-events-auto');
+                        whatsappFab.classList.add('opacity-0', 'pointer-events-none');
+                        whatsappFab.classList.remove('opacity-100', 'pointer-events-auto');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
