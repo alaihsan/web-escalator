@@ -128,22 +128,22 @@
         </div>
     </nav>
 
-    <!-- Mobile Bottom Navigation -->
+<!-- Mobile Bottom Navigation -->
     <div class="fixed bottom-0 left-0 right-0 lg:hidden z-40 bg-gradient-to-t from-slate-900/98 to-slate-900/90 border-t border-amber-400/20 backdrop-blur-md">
         <div class="flex justify-around items-center py-2">
-            <a href="index.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+            <a href="index.html" class="flex flex-col items-center gap-1 px-4 py-2 text-amber-400 hover:text-amber-300 transition-colors">
                 <i class="fas fa-home text-xl"></i>
                 <span class="text-xs font-medium" data-translate="menu.home">Beranda</span>
             </a>
-            <a href="tentangkami.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+            <a href="tentangkami.html" class="flex flex-col items-center gap-1 px-4 py-2 text-slate-300 hover:text-amber-400 transition-colors">
                 <i class="fas fa-info-circle text-xl"></i>
                 <span class="text-xs font-medium" data-translate="menu.about">Tentang</span>
             </a>
-            <a href="jasa-layanan.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+            <a href="jasa-layanan.html" class="flex flex-col items-center gap-1 px-4 py-2 text-slate-300 hover:text-amber-400 transition-colors">
                 <i class="fas fa-cog text-xl"></i>
                 <span class="text-xs font-medium" data-translate="menu.services">Layanan</span>
             </a>
-            <a href="kontak.html" class="flex flex-col items-center gap-1 px-4 py-2 hover:text-amber-400 transition-colors">
+            <a href="kontak.html" class="flex flex-col items-center gap-1 px-4 py-2 text-slate-300 hover:text-amber-400 transition-colors">
                 <i class="fas fa-phone text-xl"></i>
                 <span class="text-xs font-medium" data-translate="menu.contact">Kontak</span>
             </a>
@@ -162,15 +162,18 @@
 
     <!-- Main Content -->
     <main class="pt-20 pb-20 lg:pb-8">
-        <!-- Hero Section -->
-        <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 pt-8">
+<!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-8">
             <!-- Background Image with Overlay -->
-            <div class="absolute inset-0 opacity-30" style="background-image: url('assets/img/024.jpg'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+            <div class="absolute inset-0" style="background-image: url('assets/img/024.jpg'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
             
+            <!-- Dark Overlay for Text Readability -->
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70"></div>
+             
             <!-- Animated Background Elements -->
             <div class="absolute inset-0 overflow-hidden">
                 <div class="absolute -top-1/2 -right-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse"></div>
-                <div class="absolute -bottom-1/2 -left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+                <div class="absolute -bottom-1/2 -left-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
             </div>
 
             <!-- Content -->
@@ -258,47 +261,105 @@
             </div>
         </section>
 
-        <!-- Gallery Section -->
-        <section class=\"py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white transition-colors duration-300\">
-            <div class=\"max-w-6xl mx-auto\">
+<!-- Gallery Section -->
+        <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white transition-colors duration-300">
+            <div class="max-w-6xl mx-auto">
                 <!-- Section Title -->
-                <div class=\"text-center mb-16\">
-                    <h2 class=\"text-4xl lg:text-5xl font-black text-slate-900 mb-4\">Galeri Proyek Kami</h2>
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-black text-slate-900 mb-4">Galeri Proyek Kami</h2>
                     <div class="h-1 w-24 bg-gradient-accent rounded-full mx-auto shadow-lg"></div>
+                    <p class="text-slate-600 text-lg mt-6 max-w-2xl mx-auto">Lihat hasil karya terbaik kami dalam berbagai proyek elevator dan escalator</p>
                 </div>
 
                 <!-- Gallery Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
-                        <img src="assets/img/021.jpg" alt="Proyek 021" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                            <p class="text-white font-semibold">Proyek 021</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Gallery Item 1 -->
+                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-3 glow-box">
+                        <img src="assets/img/021.jpg" alt="Modern Elevator System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-4">
+                            <div class="flex justify-between items-start">
+                                <span class="px-3 py-1 bg-amber-500/90 text-white text-xs font-semibold rounded-full backdrop-blur-sm">Elevator Modern</span>
+                                <i class="fas fa-expand text-white opacity-80"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg mb-1">Elevator System</h3>
+                                <p class="text-white/80 text-sm">Installation & Setup</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
-                        <img src="assets/img/022.jpg" alt="Proyek 022" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                            <p class="text-white font-semibold">Proyek 022</p>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-3 glow-box">
+                        <img src="assets/img/022.jpg" alt="Escalator Maintenance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-4">
+                            <div class="flex justify-between items-start">
+                                <span class="px-3 py-1 bg-blue-500/90 text-white text-xs font-semibold rounded-full backdrop-blur-sm">Maintenance</span>
+                                <i class="fas fa-expand text-white opacity-80"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg mb-1">Escalator Service</h3>
+                                <p class="text-white/80 text-sm">Regular Maintenance</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
-                        <img src="assets/img/023.jpg" alt="Proyek 023" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                            <p class="text-white font-semibold">Proyek 023</p>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-3 glow-box">
+                        <img src="assets/img/023.jpg" alt="Control Panel Installation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-4">
+                            <div class="flex justify-between items-start">
+                                <span class="px-3 py-1 bg-green-500/90 text-white text-xs font-semibold rounded-full backdrop-blur-sm">Installation</span>
+                                <i class="fas fa-expand text-white opacity-80"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg mb-1">Control Panel</h3>
+                                <p class="text-white/80 text-sm">Smart System Setup</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
-                        <img src="assets/img/024.jpg" alt="Proyek 024" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                            <p class="text-white font-semibold">Proyek 024</p>
+
+                    <!-- Gallery Item 4 -->
+                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-3 glow-box">
+                        <img src="assets/img/024.jpg" alt="Elevator Interior Design" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-4">
+                            <div class="flex justify-between items-start">
+                                <span class="px-3 py-1 bg-purple-500/90 text-white text-xs font-semibold rounded-full backdrop-blur-sm">Interior</span>
+                                <i class="fas fa-expand text-white opacity-80"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg mb-1">Interior Design</h3>
+                                <p class="text-white/80 text-sm">Premium Cabin Design</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 md:col-span-2 lg:col-span-2">
-                        <img src="assets/img/025.jpg" alt="Proyek 025" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                            <p class="text-white font-semibold">Proyek 025</p>
+
+                    <!-- Featured Large Item -->
+                    <div class="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-3 md:col-span-2 lg:col-span-2 glow-box">
+                        <img src="assets/img/025.jpg" alt="Complete Elevator Installation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-6">
+                            <div class="flex justify-between items-start">
+                                <span class="px-4 py-2 bg-gradient-accent text-white text-sm font-bold rounded-full shadow-lg">
+                                    <i class="fas fa-star mr-1"></i>Featured Project
+                                </span>
+                                <i class="fas fa-expand text-white text-xl opacity-80"></i>
+                            </div>
+                            <div class="max-w-md">
+                                <h3 class="text-white font-black text-2xl mb-2">Complete Installation Project</h3>
+                                <p class="text-white/90 text-base">Full-service elevator installation with modern safety features and premium interior design for commercial building.</p>
+                                <div class="flex items-center gap-4 mt-3">
+                                    <span class="text-white/80 text-sm"><i class="fas fa-calendar-alt mr-1"></i>2024</span>
+                                    <span class="text-white/80 text-sm"><i class="fas fa-map-marker-alt mr-1"></i>Jakarta</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- View More Button -->
+                <div class="text-center mt-12">
+                    <a href="jasa-layanan.html" class="inline-block px-8 py-4 bg-gradient-accent text-white font-bold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 glow-button animate-glow">
+                        <i class="fas fa-th mr-2"></i>Lihat Semua Proyek
+                    </a>
                 </div>
             </div>
         </section>
