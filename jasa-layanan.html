@@ -192,13 +192,19 @@
             </button>
         </div>
     </div>
-    <!-- Hero Section -->
+<!-- Hero Section -->
     <main class="pt-20 pb-20 lg:pb-8">
-        <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 pt-8">
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-8">
+            <!-- Background Image -->
+            <div class="absolute inset-0" style="background-image: url('assets/img/023.jpg'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+            
+            <!-- Dark Overlay for Text Readability -->
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70"></div>
+            
             <!-- Animated Background Elements -->
             <div class="absolute inset-0 overflow-hidden">
                 <div class="absolute -top-1/2 -right-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse"></div>
-                <div class="absolute -bottom-1/2 -left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+                <div class="absolute -bottom-1/2 -left-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
             </div>
 
             <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
@@ -522,10 +528,7 @@
         </div>
     </div>
 
-    <!-- WhatsApp FAB -->
-    <a href="https://wa.me/6281318833002" class="fixed bottom-8 right-8 w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl hover:scale-110 transition-transform duration-300 shadow-lg z-30" target="_blank" title="Chat dengan WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+
 
     <!-- Footer -->
     <footer class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-slate-100 border-t border-amber-400/20 transition-colors duration-300">
@@ -572,8 +575,8 @@
         ↑
     </button>
 
-    <!-- WhatsApp FAB -->
-    <a href="https://wa.me/6281318833002" target="_blank" class="fixed bottom-12 lg:bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center text-white text-3xl opacity-0 pointer-events-none" id="whatsappFab" title="Chat WhatsApp">
+<!-- WhatsApp FAB -->
+    <a href="https://wa.me/6281318833002" target="_blank" class="fixed bottom-12 lg:bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center text-white text-3xl opacity-100 pointer-events-auto z-50" id="whatsappFab" title="Chat WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 

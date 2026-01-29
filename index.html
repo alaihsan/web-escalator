@@ -155,8 +155,8 @@
         ↑
     </button>
 
-    <!-- WhatsApp FAB -->
-    <a href="https://wa.me/6281318833002" target="_blank" class="fixed bottom-12 lg:bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center text-white text-3xl opacity-0 pointer-events-none" id="whatsappFab" title="Chat WhatsApp">
+<!-- WhatsApp FAB -->
+    <a href="https://wa.me/6281318833002" target="_blank" class="fixed bottom-12 lg:bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center text-white text-3xl opacity-100 pointer-events-auto z-50" id="whatsappFab" title="Chat WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -428,21 +428,16 @@
                 });
             });
 
-            // Scroll to top button visibility
+// Scroll to top button visibility (WhatsApp FAB selalu tampil)
             ScrollTrigger.create({
                 onUpdate: (self) => {
                     const scrollTop = document.getElementById('scrollTop');
-                    const whatsappFab = document.getElementById('whatsappFab');
                     if (self.getVelocity() > 0 || window.pageYOffset > 300) {
                         scrollTop.classList.add('opacity-100', 'pointer-events-auto');
                         scrollTop.classList.remove('opacity-0', 'pointer-events-none');
-                        whatsappFab.classList.add('opacity-100', 'pointer-events-auto');
-                        whatsappFab.classList.remove('opacity-0', 'pointer-events-none');
                     } else {
                         scrollTop.classList.add('opacity-0', 'pointer-events-none');
                         scrollTop.classList.remove('opacity-100', 'pointer-events-auto');
-                        whatsappFab.classList.add('opacity-0', 'pointer-events-none');
-                        whatsappFab.classList.remove('opacity-100', 'pointer-events-auto');
                     }
                 }
             });
