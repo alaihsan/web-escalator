@@ -78,7 +78,7 @@ const translations = {
         "services.item16.title": "Roda & Roller Escalator",
         "services.item16.desc": "Step roller dan guide wheel untuk sistem escalator. Penggantian roller aus, bearing maintenance, dan balancing untuk operasi escalator yang halus dan minim noise.",
         "services.item17.title": "Fan Car & Mesin",
-        "services.item17.desc": "Sensor posisi dan encoder untuk akurasi pergerakan elevator. Kalibrasi, penggantian sensor rusak, dan upgrade ke encoder presisi tinggi untuk leveling yang sempurna.",
+        "services.item17.desc": "Sensor posisi dengan akurasi tinggi untuk leveling sempurna.",
         "services.item18.title": "Brake Resistor & Safety Brake",
         "services.item18.desc": "Sistem pengereman darurat dan resistor untuk kontrol kecepatan. Testing brake system, penggantian brake pad/shoe, dan calibration untuk keamanan maksimal sesuai standar.",
         "services.item19.title": "Perangkat Keselamatan & Safety Switch",
